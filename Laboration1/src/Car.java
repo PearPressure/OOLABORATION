@@ -1,6 +1,7 @@
 import java.awt.*;
 
-/*  an abstract class of of cars, that has shared objects, the class includes the objects for a car class to be created
+/**
+ * an abstract class of of cars. Contains necessary and common data for cars.
  */
 
 public abstract class Car implements Movable {
@@ -13,6 +14,11 @@ public abstract class Car implements Movable {
     private double x, y;
     private Direction dir;
 
+
+    /**
+     * The speedfactor determines the acceleration of a car.
+     * @return speedFactor
+     */
     public abstract double speedFactor();
 
     // direction is an enum that determines what values shoud go into x,y
@@ -83,11 +89,12 @@ public abstract class Car implements Movable {
         return currentSpeed;
     }
 
-    /**
+    /*
      * Increases currentsSpeed based on the objects currentSpeed, speedfactor and input.
-      * @param amount
+     *
+     * @param amount
      */
-    public void incrementSpeed(double amount) {
+    private void incrementSpeed(double amount) {
 
         currentSpeed = getCurrentSpeed() + speedFactor() * amount;
         if (currentSpeed > enginePower) {
@@ -95,11 +102,12 @@ public abstract class Car implements Movable {
         }
     }
 
-    /**
+    /*
      * Decreases currentsSpeed based on the objects currentSpeed and speedfactor.
+     *
      * @param amount
      */
-    public void decrementSpeed(double amount) {
+    private void decrementSpeed(double amount) {
         currentSpeed = getCurrentSpeed() - speedFactor() * amount;
         if (currentSpeed < 0) {
             currentSpeed = 0;
@@ -108,7 +116,8 @@ public abstract class Car implements Movable {
     //  how the car change speed
 
     /**
-     * Increases the speed based on the amount.
+     * Increases the speed based on an amount.
+     *
      * @param amount between 0 and 1.
      */
     public void gas(double amount) {
@@ -118,7 +127,8 @@ public abstract class Car implements Movable {
     }
 
     /**
-     * Decreases the speed based on the amount
+     * Decreases the speed based on an amount.
+     *
      * @param amount between 0 and 1.
      */
     public void brake(double amount) {
@@ -128,20 +138,19 @@ public abstract class Car implements Movable {
     }
 
 
-
     /**
      * Updates the cars position based on direction and currentSpeed.
      */
     public void move() {
 
         if (dir == Direction.NORTH) {
-            this.y += currentSpeed;
+            this.y -= currentSpeed * 10;
         } else if (dir == Direction.WEST) {
-            this.x -= currentSpeed;
+            this.x -= currentSpeed * 10;
         } else if (dir == Direction.SOUTH) {
-            this.y -= currentSpeed;
+            this.y += currentSpeed * 10;
         } else if (dir == Direction.EAST) {
-            this.x += currentSpeed;
+            this.x += currentSpeed * 10;
         }
 
 

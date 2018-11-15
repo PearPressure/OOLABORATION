@@ -4,8 +4,10 @@ import java.awt.*;
  * A subclass of Car. Also has a turbo which increases speedfactor when on.
  */
 public class Saab95 extends Car {
-
-    public boolean turboOn;
+    /**
+     * If turned on, increases speedfactor.
+     */
+    private boolean turboOn;
 
 
     public Saab95(Color color, double enginePower, int nrDoors, String modelName, Direction dir, double x, double y, boolean turboOn) {
@@ -20,9 +22,7 @@ public class Saab95 extends Car {
     public void setTurboOff() {
         turboOn = false;
     }
-
-
-    /**
+    /*
      * Decides the speedfactor. If turbo is on, higher speedfactor.
      * @return The cars speedFactor, how fast it accelerates
      */

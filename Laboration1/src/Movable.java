@@ -1,5 +1,5 @@
 /**
- * interface that every car has, determines the direction and that the car move
+ * Interface used for classes which can be moved and turned.
  */
 
 public interface Movable {
