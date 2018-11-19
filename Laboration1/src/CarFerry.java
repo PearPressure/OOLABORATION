@@ -28,6 +28,9 @@ public class CarFerry implements IMovable, ILoadable {
         }
     }
 
+    /**
+     * Unloads car according to first in - first out principle.
+     */
     @Override
     public void unloadCar() {
         if (!parent.isMoving() && parent.isFlakExtended()) {
@@ -51,8 +54,10 @@ public class CarFerry implements IMovable, ILoadable {
 
     }
 
+
     @Override
     public void turnRight() {
+
         parent.move();
     }
 }
