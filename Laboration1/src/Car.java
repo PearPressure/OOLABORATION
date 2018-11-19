@@ -4,7 +4,7 @@ import java.awt.*;
  * an abstract class of of cars. Contains necessary and common data for cars.
  */
 
-public abstract class Car implements Movable {
+public class Car implements IMovable {
     //variables
     private Color color;
     private double enginePower;
@@ -13,17 +13,27 @@ public abstract class Car implements Movable {
     private String modelName;
     private double x, y;
     private Direction dir;
+    private final Size size;
+    private boolean isLoaded = false;
+    private boolean engineOn = false;
 
 
     /**
      * The speedfactor determines the acceleration of a car.
+     *
      * @return speedFactor
      */
-    public abstract double speedFactor();
+    public double speedFactor() {
+        return enginePower * 0.01;
+    }
 
     // direction is an enum that determines what values shoud go into x,y
-    enum Direction {
+    public enum Direction {
         NORTH, WEST, SOUTH, EAST;
+    }
+
+    public enum Size {
+        SMALL, LARGE
     }
 
     public String getModelName() {
@@ -38,12 +48,28 @@ public abstract class Car implements Movable {
         return y;
     }
 
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public void setLoaded(boolean loaded) {
+        isLoaded = loaded;
+    }
+
+    public void setEngineOn(boolean engineOn) {
+        this.engineOn = engineOn;
+    }
+
     public Direction getDir() {
         return dir;
     }
 
     //constructor
-    public Car(Color color, double enginePower, int nrDoors, String modelName, Direction dir, double x, double y) {
+    public Car(Color color, double enginePower, int nrDoors, String modelName, Direction dir, double x, double y, Size size) {
         this.color = color;
         this.enginePower = enginePower;
         this.nrDoors = nrDoors;
@@ -52,11 +78,14 @@ public abstract class Car implements Movable {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.size = size;
     }
 
     public void startEngine() {
-
-        currentSpeed = 0.1;
+        if (!isLoaded) {
+            engineOn = true;
+            currentSpeed = 0.1;
+        }
     }
 
     // stop engine
@@ -89,16 +118,34 @@ public abstract class Car implements Movable {
         return currentSpeed;
     }
 
+    // sets Currentspeed
+    public void setCurrentSpeed(double currentSpeed) {
+        this.currentSpeed = currentSpeed;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setDir(Direction dir) {
+        this.dir = dir;
+    }
+
+    public boolean isMoving() {
+        return currentSpeed == 0;
+    }
+
     /*
      * Increases currentsSpeed based on the objects currentSpeed, speedfactor and input.
      *
      * @param amount
      */
-    private void incrementSpeed(double amount) {
-
-        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
-        if (currentSpeed > enginePower) {
-            currentSpeed = enginePower;
+    public void incrementSpeed(double amount) {
+        if (engineOn) {
+            currentSpeed = getCurrentSpeed() + speedFactor() * amount;
+            if (currentSpeed > enginePower) {
+                currentSpeed = enginePower;
+            }
         }
     }
 
@@ -142,7 +189,10 @@ public abstract class Car implements Movable {
      * Updates the cars position based on direction and currentSpeed.
      */
     public void move() {
+        updatePosition();
+    }
 
+    void updatePosition() {
         if (dir == Direction.NORTH) {
             this.y -= currentSpeed * 10;
         } else if (dir == Direction.WEST) {
@@ -152,28 +202,31 @@ public abstract class Car implements Movable {
         } else if (dir == Direction.EAST) {
             this.x += currentSpeed * 10;
         }
-
-
     }
 
 
     public void turnLeft() {
-
-        if (dir == Direction.NORTH) {
-            dir = Direction.WEST;
-        } else if (dir == Direction.WEST) {
-            dir = Direction.SOUTH;
-        } else if (dir == Direction.SOUTH) {
-            dir = Direction.EAST;
-        } else if (dir == Direction.EAST) {
-            dir = Direction.NORTH;
-        }
-
+        this.changeDirLeft();
 
     }
 
-    public void turnRight() {
+    void changeDirLeft() {
+        if (dir == Direction.NORTH) {
+            dir = Direction.WEST;
+        } else if (dir == Direction.WEST) {
+            dir = Direction.SOUTH;
+        } else if (dir == Direction.SOUTH) {
+            dir = Direction.EAST;
+        } else if (dir == Direction.EAST) {
+            dir = Direction.NORTH;
+        }
+    }
 
+    public void turnRight() {
+        this.changeDirRight();
+    }
+
+    void changeDirRight() {
         if (dir == Direction.NORTH) {
             dir = Direction.EAST;
         } else if (dir == Direction.EAST) {
@@ -183,8 +236,6 @@ public abstract class Car implements Movable {
         } else if (dir == Direction.WEST) {
             dir = Direction.NORTH;
         }
-
-
     }
 
 

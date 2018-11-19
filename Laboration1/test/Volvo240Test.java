@@ -4,28 +4,7 @@ import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class saabtest{
-    Saab95 saab95 = new Saab95(Color.BLUE, 20, 4,"95", Car.Direction.NORTH,100,100,true);
 
-    @Test
-    public void Turbo(){
-
-        saab95.startEngine();
-        saab95.setTurboOff();
-
-        assertEquals(0.2, saab95.speedFactor());
-
-        saab95.setTurboOn();
-
-        assertEquals(0.26, saab95.speedFactor());
-
-
-
-    }
-
-
-
-}
 class Volvo240Test {
     Volvo240 volvo = new Volvo240(Color.BLUE, 20, 4, "240", Car.Direction.NORTH, 100, 100);
 
