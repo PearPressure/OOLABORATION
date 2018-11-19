@@ -72,6 +72,7 @@ public class Car implements IMovable {
     public Car(Color color, double enginePower, int nrDoors, String modelName, Direction dir, double x, double y, Size size) {
         this.color = color;
         this.enginePower = enginePower;
+        //hej
         this.nrDoors = nrDoors;
         this.currentSpeed = 0;
         this.modelName = modelName;
