@@ -35,6 +35,7 @@ public class Car implements IMovable {
     public enum Size {
         SMALL, LARGE
     }
+    //hej
 
     public String getModelName() {
         return modelName;
