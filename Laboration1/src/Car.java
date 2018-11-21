@@ -29,7 +29,7 @@ public class Car implements IMovable {
 
     // direction is an enum that determines what values shoud go into x,y
     public enum Direction {
-        NORTH, WEST, SOUTH, EAST;
+        NORTH, WEST, SOUTH, EAST
     }
 
     public enum Size {
@@ -72,7 +72,6 @@ public class Car implements IMovable {
     public Car(Color color, double enginePower, int nrDoors, String modelName, Direction dir, double x, double y, Size size) {
         this.color = color;
         this.enginePower = enginePower;
-        //hej
         this.nrDoors = nrDoors;
         this.currentSpeed = 0;
         this.modelName = modelName;
@@ -81,6 +80,11 @@ public class Car implements IMovable {
         this.dir = dir;
         this.size = size;
     }
+
+    public Car(){
+        this.size = Size.SMALL;
+    }
+
 
     public void startEngine() {
         if (!isLoaded) {
@@ -128,7 +132,7 @@ public class Car implements IMovable {
         return size;
     }
 
-    public void setDir(Direction dir) {
+    public void setDirection(Direction dir) {
         this.dir = dir;
     }
 

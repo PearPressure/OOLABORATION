@@ -18,6 +18,10 @@ public class CarTransport extends Truck implements ILoadable{
         this.maxCars = maxCars;
     }
 
+    public CarTransport(){
+        maxCars = 20;
+    }
+
 
 
 
@@ -38,30 +42,44 @@ public class CarTransport extends Truck implements ILoadable{
     /**
      * Loads a car c to the truck if possible
      *
-     * @param c
+     * @param c A car to load
      */
-    public void loadCar(Car c) {
+    public boolean loadCar(Car c) {
         if (!this.isMoving() && this.isFlakExtended() && isClose(c) && isRoomForCar() && c.getSize() == Car.Size.SMALL) {
             loadedCars.add(0,c);
             c.setLoaded(true);
             c.setEngineOn(false);
             c.setX(this.getX());
             c.setY(this.getY());
+            return true;
         }
+        return false;
     }
 
 
     /**
-     * Unloades the last loaded car to a nearby position.
+     * "Unloads" the last loaded car and puts it on a nearby coordinate
+     * @return The unloaded car
      */
-    public void unloadCar() {
+    public Car unloadCar() {
         if (!this.isMoving() && this.isFlakExtended() && loadedCars.size() > 0) {
             Car c = loadedCars.get(0);
             c.setX(this.getX() - 10);
             c.setY(this.getY() - 10);
             c.setLoaded(false);
             loadedCars.remove(0);
+            return c;
         }
+        return null;
+    }
+
+    public void unloadAll(){
+        if (!this.isMoving() && this.isFlakExtended() && loadedCars.size() > 0) {
+            for(Car c : getLoadedCars()){
+                this.unloadCar();
+            }
+        }
+
     }
 
 
@@ -96,16 +114,17 @@ public class CarTransport extends Truck implements ILoadable{
     public void turnRight(){
         this.changeDirRight();
         for(Car c : loadedCars){
-            c.setDir(this.getDir());
+            c.setDirection(this.getDir());
         }
     }
 
     public void turnLeft(){
         this.changeDirLeft();
         for(Car c : loadedCars){
-            c.setDir(this.getDir());
+            c.setDirection(this.getDir());
         }
     }
+
 
 }
 
