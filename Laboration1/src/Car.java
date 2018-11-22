@@ -82,7 +82,8 @@ public class Car implements IMovable {
     }
 
     public Car(){
-        this.size = Size.SMALL;
+
+        this(Color.BLUE, 10, 4, "FinBil", Direction.NORTH, 100, 100, Size.SMALL);
     }
 
 
@@ -137,7 +138,7 @@ public class Car implements IMovable {
     }
 
     public boolean isMoving() {
-        return currentSpeed == 0;
+        return currentSpeed != 0;
     }
 
     /*

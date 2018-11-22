@@ -30,12 +30,11 @@ class CarTransportTest {
 
     @Test
     void loadCar() {
-
+        cTran.extendFlak();
         cTran.loadCar(c1);
         cTran.loadCar(c2);
-        Car unC = cTran.unloadCar();
 
-        assertEquals(c2, unC);
+        assertEquals(c2, cTran.unloadCar());
 
 
 
@@ -59,13 +58,15 @@ class CarTransportTest {
     @Test
     void getLoadedCars() {
 
+        cTran.extendFlak();
+
         cTran.loadCar(c1);
         cTran.loadCar(c2);
 
         Car[] cArr = {c1,c2};
 
 
-        assertEquals(c1, cTran.getLoadedCars().get(0));
+        assertEquals(c2, cTran.getLoadedCars().get(0));
         assertEquals(c1, cTran.getLoadedCars().get(1));
 
     }

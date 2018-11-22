@@ -25,7 +25,7 @@ public class Scania extends Truck {
     }
 
     public void setFlakAngle(double flakAngle) {
-        if (flakAngle <= 70 && flakAngle >= 0 && this.isMoving()) {
+        if (flakAngle <= 70 && flakAngle >= 0 && !this.isMoving()) {
             this.flakAngle = flakAngle;
         }
     }

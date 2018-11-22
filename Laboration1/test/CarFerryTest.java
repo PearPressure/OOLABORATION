@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CarFerryTest {
 
-    CarFerry carFerry = new CarFerry(Color.YELLOW, 50, "CarFerry", Car.Direction.NORTH, 100, 100, 20);
+    CarFerry carFerry = new CarFerry(Color.YELLOW, 50, "CarFerry", Car.Direction.NORTH, 100, 100, 2);
 
     Car c1 = new Car();
     Car c2 = new Car();
@@ -14,6 +14,7 @@ class CarFerryTest {
 
     @Test
     void loadCar() {
+        carFerry.extendFlak();
 
         carFerry.loadCar(c1);
         carFerry.loadCar(c2);
@@ -29,6 +30,9 @@ class CarFerryTest {
 
     @Test
     void unloadCar() {
+
+        carFerry.extendFlak();
+
         carFerry.loadCar(c1);
         carFerry.loadCar(c2);
 

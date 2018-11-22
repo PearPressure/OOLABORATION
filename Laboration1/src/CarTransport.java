@@ -63,11 +63,10 @@ public class CarTransport extends Truck implements ILoadable{
      */
     public Car unloadCar() {
         if (!this.isMoving() && this.isFlakExtended() && loadedCars.size() > 0) {
-            Car c = loadedCars.get(0);
+            Car c = loadedCars.remove(0);
             c.setX(this.getX() - 10);
             c.setY(this.getY() - 10);
             c.setLoaded(false);
-            loadedCars.remove(0);
             return c;
         }
         return null;

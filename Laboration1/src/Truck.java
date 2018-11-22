@@ -51,7 +51,7 @@ public class Truck extends Car {
      * Starts the engine if the flak is retracted.
      */
     public void startEngine() {
-        if (!this.isFlakExtended) {
+        if (!isFlakExtended()) {
             this.setCurrentSpeed(0.1);
         }
 
