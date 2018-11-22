@@ -31,7 +31,7 @@ public class Scania extends Truck {
     }
 
     /**
-     * Raises to maximum angle.
+     * Raises flak to maximum angle.
      */
     public void extendFlak() {
         if (!this.isMoving()) {
@@ -40,6 +40,10 @@ public class Scania extends Truck {
         }
     }
 
+    /**
+     * Raises flak with an amount.
+     * @param amount
+     */
     public void extendFlak(double amount) {
         if (!this.isMoving()) {
             this.flakAngle += amount;
@@ -49,7 +53,7 @@ public class Scania extends Truck {
     }
 
     /**
-     * Lowers the flak so the truck can move.
+     * Lowers the flak completely so the truck can move.
      */
     public void retractFlak() {
         this.flakAngle = 0;

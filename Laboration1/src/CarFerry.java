@@ -1,9 +1,14 @@
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Class for a ferry which can transport a number of cars. First car in is also first car out.
+ */
 public class CarFerry implements IMovable, ILoadable {
 
     private final CarTransport parent;
+
+
 
     public CarFerry(Color color, int enginePower, String modelName, Car.Direction dir, int x, int y, int maxCars) {
         parent = new CarTransport(color, enginePower, 0, modelName, dir, x, y, maxCars);
@@ -24,6 +29,12 @@ public class CarFerry implements IMovable, ILoadable {
         parent.retractFlak();
     }
 
+    /**
+     * Loads a car onto the ferry if the flak is extended while stationary, and the car is close enough
+     * and have room.
+     * @param c Car to load.
+     * @return True if car was loaded, otherwise false.
+     */
     @Override
     public boolean loadCar(Car c) {
         if (!parent.isMoving() && parent.isFlakExtended() && parent.isClose(c) && parent.isRoomForCar() && c.getSize() == Car.Size.SMALL) {
@@ -52,15 +63,18 @@ public class CarFerry implements IMovable, ILoadable {
         return null;
     }
 
+    /**
+     * Unloads all cars from the ferry.
+     */
     public void unloadAll() {
-        if (!parent.isMoving() && parent.isFlakExtended()) {
-            for (Car c: parent.getLoadedCars()) {
-                this.unloadCar();
-            }
-        }
+        parent.unloadAll();
 
     }
 
+    /**
+     *
+     * @return A list of all the loaded cars.
+     */
     public List<Car> getLoadedCars() {
         return parent.getLoadedCars();
     }

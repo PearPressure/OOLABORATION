@@ -86,7 +86,9 @@ public class Car implements IMovable {
         this(Color.BLUE, 10, 4, "FinBil", Direction.NORTH, 100, 100, Size.SMALL);
     }
 
-
+    /**
+     * Starts the engine and sets a speed, as long as the car isn't loaded.
+     */
     public void startEngine() {
         if (!isLoaded) {
             engineOn = true;
@@ -97,6 +99,7 @@ public class Car implements IMovable {
     // stop engine
     public void stopEngine() {
         currentSpeed = 0;
+        engineOn = false;
     }
 
     //  gets getcolor

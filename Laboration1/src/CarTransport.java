@@ -23,24 +23,32 @@ public class CarTransport extends Truck implements ILoadable{
     }
 
 
-
-
+    /**
+     *
+     * @return A list of the loaded cars.
+     */
     public List<Car> getLoadedCars() {
         return loadedCars;
     }
 
+    /**
+     * Extends the ramp so it can load cars.
+     */
     public void extendFlak() {
         if(!this.isMoving()){
         this.setFlakExtended(true);}
     }
 
+    /**
+     * Retracts the ramp so it can move again.
+     */
     public void retractFlak() {
         this.setFlakExtended(false);
     }
 
 
     /**
-     * Loads a car c to the truck if possible
+     * Loads car to the truck if possible
      *
      * @param c A car to load
      */
@@ -72,6 +80,9 @@ public class CarTransport extends Truck implements ILoadable{
         return null;
     }
 
+    /**
+     * Unloades all car on the bed.
+     */
     public void unloadAll(){
         if (!this.isMoving() && this.isFlakExtended() && loadedCars.size() > 0) {
             for(Car c : getLoadedCars()){
@@ -82,16 +93,16 @@ public class CarTransport extends Truck implements ILoadable{
     }
 
 
-    /**
-     * @return True if there is room for another car on the truckbed.
+    /** Check if there is room for a car on the bed.
+     * @return True if there is room.
      */
     public boolean isRoomForCar() {
         return maxCars - loadedCars.size() > 0;
     }
 
-    /**
-     * @param c Car to check if close enough for loading
-     * @return True if close enough
+    /** Checks if a car is close enough for loading.
+     * @param c Car to check.
+     * @return True if close enough.
      */
     public boolean isClose(Car c) {
         return (c.getX() - this.getX() < 20 || c.getX() - this.getX() > -20) && (c.getY() - this.getY() < 20 || c.getY() - this.getY() > -20);
@@ -99,7 +110,7 @@ public class CarTransport extends Truck implements ILoadable{
 
 
     /**
-     * In addition to update position, it also moves all cars which are loaded.
+     * In addition to updating position, it also moves all cars which are loaded.
      */
     @Override
     public void move() {
@@ -110,6 +121,9 @@ public class CarTransport extends Truck implements ILoadable{
         }
     }
 
+    /**
+     * Turns both the transport and all loaded cars.
+     */
     public void turnRight(){
         this.changeDirRight();
         for(Car c : loadedCars){
@@ -117,6 +131,9 @@ public class CarTransport extends Truck implements ILoadable{
         }
     }
 
+    /**
+     * Turns both the transport and the loaded cars.
+     */
     public void turnLeft(){
         this.changeDirLeft();
         for(Car c : loadedCars){
