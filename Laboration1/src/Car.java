@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 /**
  * an abstract class of of cars. Contains necessary and common data for cars.
@@ -11,9 +12,10 @@ public class Car implements IMovable {
     private int nrDoors;
     private double currentSpeed;
     private String modelName;
-    private double x, y;
     private Direction dir;
     private final Size size;
+    private double x;
+    private double y;
     private boolean isLoaded = false;
     private boolean engineOn = false;
 
@@ -40,13 +42,6 @@ public class Car implements IMovable {
         return modelName;
     }
 
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
 
     public void setX(double x) {
         this.x = x;
@@ -100,6 +95,15 @@ public class Car implements IMovable {
     public void stopEngine() {
         currentSpeed = 0;
         engineOn = false;
+    }
+
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
     }
 
     //  gets getcolor

@@ -13,6 +13,10 @@ public class Volvo240 extends Car {
         super(color, enginePower, nrDoors, modelName, dir, x, y, Size.SMALL);
     }
 
+    public Volvo240(){
+        super();
+    }
+
 
 
     /*

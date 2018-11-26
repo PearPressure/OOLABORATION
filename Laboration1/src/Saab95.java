@@ -7,12 +7,16 @@ public class Saab95 extends Car {
     /**
      * If turned on, increases speedfactor.
      */
-    private boolean turboOn;
+    private boolean turboOn = false;
 
 
     public Saab95(Color color, double enginePower, int nrDoors, String modelName, Direction dir, double x, double y, boolean turboOn) {
         super(color, enginePower, nrDoors, modelName, dir, x, y, Size.SMALL);
         this.turboOn = turboOn;
+    }
+
+    public Saab95(){
+        super();
     }
 
     public boolean isTurboOn() {
