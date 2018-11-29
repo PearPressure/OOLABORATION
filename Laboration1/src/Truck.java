@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public abstract class Truck extends Car {
+public class Truck extends Car {
 
     private boolean isFlakExtended;
 
@@ -10,27 +10,32 @@ public abstract class Truck extends Car {
         this.setFlakExtended(false);
     }
 
+    public Truck(){
 
-    public double speedFactor() {
-        return this.getEnginePower() * 0.01;
     }
 
-    public abstract void extendFlak();
+    public void extendFlak() {
+        isFlakExtended = true;
+    }
 
-    public abstract void retractFlak();
+    public void retractFlak() {
+        isFlakExtended = false;
+    }
 
     public boolean isFlakExtended() {
+
         return isFlakExtended;
     }
 
     public void setFlakExtended(boolean flakExtended) {
+
         isFlakExtended = flakExtended;
     }
 
     /**
      * Increments the speed if the flak is retracted.
      *
-     * @param amount
+     * @param amount An amount with which to increase the speed
      */
     public void incrementSpeed(double amount) {
         if (!this.isFlakExtended) {
@@ -46,7 +51,7 @@ public abstract class Truck extends Car {
      * Starts the engine if the flak is retracted.
      */
     public void startEngine() {
-        if (!this.isFlakExtended) {
+        if (!isFlakExtended()) {
             this.setCurrentSpeed(0.1);
         }
 

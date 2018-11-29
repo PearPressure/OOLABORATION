@@ -10,33 +10,33 @@ class ScaniaTest {
 
 
     @Test
-    void raiseFlak() {
+    void extendFlak() {
         scania.startEngine();
-        scania.raiseFlak();
+        scania.extendFlak();
         assertEquals(0, scania.getFlakAngle());
         scania.stopEngine();
     }
 
     @Test
-    void raiseFlak1() {
-        scania.raiseFlak();
+    void extendFlak1() {
+        scania.extendFlak();
         assertEquals(70,scania.getFlakAngle());
     }
 
     @Test
-    void lowerFlak() {
+    void retractFlak() {
         scania.setFlakAngle(20);
-        scania.lowerFlak(10);
+        scania.retractFlak(10);
         assertEquals(10,scania.getFlakAngle());
     }
 
     @Test
-    void lowerFlak1() {
+    void retractFlak1() {
         scania.setFlakAngle(50);
         scania.startEngine();
         assertEquals(0,scania.getCurrentSpeed());
         scania.stopEngine();
-        scania.lowerFlak();
+        scania.retractFlak();
         assertEquals(0,scania.getFlakAngle());
     }
 

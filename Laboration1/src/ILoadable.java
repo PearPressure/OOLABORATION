@@ -1,14 +1,19 @@
+import java.util.List;
+
 /**
  * Interface for vehicles with the ability to load cars.
  */
 
 public interface ILoadable {
+
     void extendFlak();
 
     void retractFlak();
 
-    void loadCar(Car c);
+    boolean loadCar(Car c);
 
-    void unloadCar();
+    Car unloadCar();
+
+    List<Car> getLoadedCars();
 
 }
