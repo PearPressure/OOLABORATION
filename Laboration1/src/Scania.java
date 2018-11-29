@@ -14,7 +14,9 @@ public class Scania extends Truck {
     public Scania(Color color, double enginePower, int nrDoors, String modelName, Car.Direction dir, double x, double y) {
         super(color, enginePower, nrDoors, modelName, dir, x, y);
     }
-
+    public Scania(double x, double y){
+        this(Color.BLUE, 30, 4, "Scania", Direction.EAST, x, y);
+    }
 
     public double getFlakAngle() {
         return flakAngle;

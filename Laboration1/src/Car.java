@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 /**
  * an abstract class of of cars. Contains necessary and common data for cars.
@@ -11,12 +12,12 @@ public class Car implements IMovable {
     private int nrDoors;
     private double currentSpeed;
     private String modelName;
-    private double x, y;
     private Direction dir;
     private final Size size;
+    private double x;
+    private double y;
     private boolean isLoaded = false;
     private boolean engineOn = false;
-
 
     /**
      * The speedfactor determines the acceleration of a car.
@@ -35,19 +36,11 @@ public class Car implements IMovable {
     public enum Size {
         SMALL, LARGE
     }
-    //hej
 
     public String getModelName() {
         return modelName;
     }
 
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
 
     public void setX(double x) {
         this.x = x;
@@ -81,17 +74,18 @@ public class Car implements IMovable {
         this.dir = dir;
         this.size = size;
     }
+    public Car(){ this(Color.BLUE, 10, 4, "FinBil", Direction.EAST, 100, 100, Size.SMALL);}
 
-    public Car(){
-
-        this(Color.BLUE, 10, 4, "FinBil", Direction.NORTH, 100, 100, Size.SMALL);
+    public Car(double x, double y){
+        this(Color.BLUE, 10, 4, "FinBil", Direction.NORTH, x, y, Size.SMALL);
     }
+
 
     /**
      * Starts the engine and sets a speed, as long as the car isn't loaded.
      */
     public void startEngine() {
-        if (!isLoaded) {
+        if (!isLoaded && !isEngineOn()) {
             engineOn = true;
             currentSpeed = 0.1;
         }
@@ -101,6 +95,15 @@ public class Car implements IMovable {
     public void stopEngine() {
         currentSpeed = 0;
         engineOn = false;
+    }
+
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
     }
 
     //  gets getcolor
@@ -143,6 +146,10 @@ public class Car implements IMovable {
 
     public boolean isMoving() {
         return currentSpeed != 0;
+    }
+
+    public boolean isEngineOn() {
+        return engineOn;
     }
 
     /*
@@ -199,7 +206,9 @@ public class Car implements IMovable {
      * Updates the cars position based on direction and currentSpeed.
      */
     public void move() {
-        updatePosition();
+        if(isEngineOn()){
+            updatePosition();
+        }
     }
 
     void updatePosition() {
@@ -246,6 +255,11 @@ public class Car implements IMovable {
         } else if (dir == Direction.WEST) {
             dir = Direction.NORTH;
         }
+    }
+
+    public void invertDirection(){
+        this.turnLeft();
+        this.turnLeft();
     }
 
 

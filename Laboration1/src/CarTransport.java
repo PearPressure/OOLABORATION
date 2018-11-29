@@ -18,9 +18,7 @@ public class CarTransport extends Truck implements ILoadable{
         this.maxCars = maxCars;
     }
 
-    public CarTransport(){
-        maxCars = 20;
-    }
+
 
 
     /**

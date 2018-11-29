@@ -13,6 +13,9 @@ public class Volvo240 extends Car {
         super(color, enginePower, nrDoors, modelName, dir, x, y, Size.SMALL);
     }
 
+    public Volvo240(double x, double y){
+        this(Color.BLUE, 10, 4, "Volvo240", Direction.EAST, x, y);
+    }
 
 
     /*

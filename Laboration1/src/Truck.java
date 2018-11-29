@@ -10,10 +10,6 @@ public class Truck extends Car {
         this.setFlakExtended(false);
     }
 
-    public Truck(){
-
-    }
-
     public void extendFlak() {
         isFlakExtended = true;
     }
@@ -38,7 +34,7 @@ public class Truck extends Car {
      * @param amount An amount with which to increase the speed
      */
     public void incrementSpeed(double amount) {
-        if (!this.isFlakExtended) {
+        if (!this.isFlakExtended && isEngineOn()) {
             this.setCurrentSpeed(this.getCurrentSpeed() + speedFactor() * amount);
             if (this.getCurrentSpeed() > this.getEnginePower()) {
                 this.setCurrentSpeed(this.getEnginePower());
@@ -52,7 +48,8 @@ public class Truck extends Car {
      */
     public void startEngine() {
         if (!isFlakExtended()) {
-            this.setCurrentSpeed(0.1);
+            setCurrentSpeed(0.1);
+            setEngineOn(true);
         }
 
     }
